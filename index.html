@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+         #home {
+    text-align: center;
+}
+        .home-image {
+        max-width: 200px; /* Ukuran maksimum gambar */
+        height: auto; /* Menyesuaikan tinggi secara proporsional */
+        margin: 1rem 0; /* Memberikan jarak vertikal */
+        border-radius: 50%; /* Membuat gambar menjadi lingkaran (opsional) */
+}
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+        header {
+            background-color: burlywood;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: brown;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem;
+        }
+        nav a:hover {
+            background-color: burlywood;
+        }
+        section {
+            padding: 2rem;
+        }
+        .portfolio-item {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .portfolio-item img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ccc;
+        }
+        .portfolio-item div {
+            flex: 1;
+            min-width: 300px;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color:burlywood;
+            color: #fff;
+        }
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        form label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        form input, form textarea, form button {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        form button { /*bagian email*/
+            background-color: brown;
+            color: #fff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Na'afa Sheva Puteri</h1>
+    <h3>|Beginner Web Developer|</h3>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section id="home">
+    <h2>Home</h2>
+    <img src="gambar/Karina.jpg" alt="Foto Profil Na'afa Sheva Puteri" class="home-image">
+    <p>Selamat datang di Website Portofoio saya!</p>
+    <p>Halo! Perkenalkan saya Na'afa Sheva Puteri. Saya seorang "Web Developer Pemula".</p>
+</section>
+
+<section id="about">
+    <h2>About Me</h2>
+    <p>Perkenalkan nama saya: Na'afa Sheva Puteri, saya lahir di Bandung 01 februari 2005.
+        Saat ini saya berkuliah di Universitas Kuningan<div>dengan Program Studi Teknik Informatika sekarang saya mahasiswi semester 3 angkatan 2023.</div><br>
+
+    <div>Hobi: Menonton Drama Korea dan mendengarkan musik K-POP</div>
+    <p>Pendidikan: TK KEMALA BHAYANGKARI 34 (2008-2010)</p>
+    <div>           - SDN 1 CIPORANG (2010 - 2016) </div>
+    <div>           - SMPN 7 KUNINGAN (2017-2020)</div>
+    <div>           - SMKN 2 KUNINGAN (2021-2023)</div>
+    <div>           - UNIVERSITAS KUNINGAN (2023 -)</div>
+
+
+    <p>Tujuan menjadi web developer adalah untuk membuat tampilan situs web yang menarik dan responsif, sehingga dapat memberikan pengalaman yang menyenangkan bagi pengguna.</p>
+</section>
+
+<section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio-item">
+        <div>
+            <img src="gambar/Project 1_ Website_Hotel.jpg" alt="Project 1">
+            <p><strong>Project 1:</strong> Website Hotel Sederhana</p>
+            <p> Project ini saya buat untuk memenuhi tugas Praktikum Pemrograman Web 1 dikampus saya</p>
+        </div>
+        <div>
+            <img src="gambar/Perpus.jpg" alt="Project 2">
+            <p><strong>Project 2:</strong> Webiste Perpustakaan</p>
+            <p> Membuat website perpus ini untuk memenuhi tugas projek saat saya SMK</p>
+        </div>
+        <div>
+            <img src="gambar/Project 3_Shop.jpg" alt="Project 3">
+            <p><strong>Project 3:</strong> Game Tic Tac Toe</p>
+            <p> Membuat website tempat belanja pakaian, sebagai tugas dari matakuliah PTI saat saya semester 1</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact">
+    <h2>Kontak Saya melalui e-mail</h2>
+    <form method="post" action="direct_post.php">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="pesan">Pesan:</label>
+        <textarea id="pesan" name="pesan" rows="4" required></textarea>
+        
+        <button type="submit">Kirim Pesan</button>
+    </form>
+</section>
+    <p> Ikuti sosial media saya :<a href="https://www.instagram.com/afaaaarz?igsh=MTJ2azhwNHdmdDR6Zg==">Intagram Saya</a><br>     </a><a href="https://github.com/naafashevaputeri/AplikasiSPPNaafa">Github saya, </a><a href="https://wa.me/qr/ULVQH7MHH7Q5C1">WhatsApp Saya</a><br></a></p>
+</section>
+
+<footer>
+    <p>&copy; 2024 Na'afa Sheva Puteri. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
