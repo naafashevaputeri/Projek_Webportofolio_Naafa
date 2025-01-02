@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Pemesanan Hotel Naafa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        form label {
+            display: block;
+            margin-top: 10px;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manajemen Pemesanan Hotel Naafa</h1>
+
+    <div id="loginPanel" class="login-container">
+        <h2>Login Admin</h2>
+        <form id="loginForm">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Masukkan username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Masukkan password" required>
+
+            <button type="button" onclick="login()">Login</button>
+        </form>
+        <div class="welcome-text"><br>
+            <strong>Selamat datang admin dan konsumen!</strong>
+           <p><b>Teruntuk konsumen kami, silahkan isi "form pemesanan" dengan mengklik button dibawah ini.</b></p>
+                <b> Terima kasih!</b>
+        </div>
+    </div>
+<br>
+    <div id="adminPanel" class="hidden">
+        <h2>Dashboard Admin</h2>
+        <button onclick="showBookings()">Lihat Data Pemesanan</button>
+    </div>
+
+    <div class="container">
+        <button onclick="showRoomTypes()">Lihat Jenis Kamar</button>
+        <button onclick="showFacilities()">Lihat Fasilitas</button>
+        <button onclick="showBookingForm()">Form Pemesanan</button>
+    </div>
+
+    <div id="roomTypes" class="hidden">
+        <h2>Jenis Kamar</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipe Kamar</th>
+                    <th>Harga per Malam</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Standard</td>
+                    <td>Rp500.000</td>
+                </tr>
+                <tr>
+                    <td>Deluxe</td>
+                    <td>Rp750.000</td>
+                </tr>
+                <tr>
+                    <td>Family</td>
+                    <td>Rp1.000.000</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="facilities" class="hidden">
+        <h2>Fasilitas</h2>
+        <ul>
+            <li>Kolam Renang</li>
+            <li>Wi-Fi Gratis</li>
+            <li>Parkir Luas</li>
+            <li>Restoran</li>
+            <li>Pusat Kebugaran</li>
+        </ul>
+    </div>
+
+    <div id="bookingForm" class="hidden">
+        <h2>Form Pemesanan</h2>
+        <form id="orderForm">
+            <label for="name">Nama Pemesan:</label>
+            <input type="text" id="name" required>
+
+            <label for="idNumber">Nomor Identitas:</label>
+            <input type="text" id="idNumber" pattern="\d{16}" required>
+
+            <label for="gender">Jenis Kelamin:</label>
+            <select id="gender" required>
+                <option value="">Pilih...</option>
+                <option value="Laki-laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+
+            <label for="roomType">Tipe Kamar:</label>
+            <select id="roomType" required>
+                <option value="">Pilih...</option>
+                <option value="Standard">Standard</option>
+                <option value="Deluxe">Deluxe</option>
+                <option value="Family">Family</option>
+            </select>
+
+            <label for="checkIn">Tanggal Check-In:</label>
+            <input type="date" id="checkIn" required>
+
+            <label for="checkOut">Tanggal Check-Out:</label>
+            <input type="date" id="checkOut" required>
+
+            <label for="breakfast">Termasuk Breakfast:</label>
+            <select id="breakfast">
+                <option value="yes">Ya</option>
+                <option value="no">Tidak</option>
+            </select>
+
+            <button type="button" onclick="submitBooking()">Simpan</button>
+        </form>
+    </div>
+
+    <div id="bookings" class="hidden">
+        <h2>Data Pemesanan</h2>
+        <table id="bookingTable">
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Nomor Identitas</th>
+                    <th>Tipe Kamar</th>
+                    <th>Check-In</th>
+                    <th>Check-Out</th>
+                    <th>Breakfast</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="bookingResume" class="hidden">
+        <h2>Resume Pemesanan</h2>
+        <p><strong>Nama Pemesan:</strong> <span id="resumeName"></span></p>
+        <p><strong>Nomor Identitas:</strong> <span id="resumeId"></span></p>
+        <p><strong>Jenis Kelamin:</strong> <span id="resumeGender"></span></p>
+        <p><strong>Tipe Kamar:</strong> <span id="resumeRoom"></span></p>
+        <p><strong>Durasi Penginapan:</strong> <span id="resumeDuration"></span> malam</p>
+        <p><strong>Diskon:</strong> <span id="resumeDiscount"></span>%</p>
+        <p><strong>Total Bayar:</strong> Rp<span id="resumeTotal"></span></p>
+    </div>
+
+    <script>
+        const adminCredentials = {
+            username: 'admin',
+            password: '1234'
+        };
+
+        let bookings = [];
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === adminCredentials.username && password === adminCredentials.password) {
+                document.getElementById('loginPanel').classList.add('hidden');
+                document.getElementById('adminPanel').classList.remove('hidden');
+            } else {
+                alert('Username atau password salah!');
+            }
+        }
+
+        function showRoomTypes() {
+            document.getElementById('roomTypes').classList.remove('hidden');
+            document.getElementById('facilities').classList.add('hidden');
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('bookings').classList.add('hidden');
+            document.getElementById('bookingResume').classList.add('hidden');
+        }
+
+        function showFacilities() {
+            document.getElementById('facilities').classList.remove('hidden');
+            document.getElementById('roomTypes').classList.add('hidden');
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('bookings').classList.add('hidden');
+            document.getElementById('bookingResume').classList.add('hidden');
+        }
+
+        function showBookingForm() {
+            document.getElementById('bookingForm').classList.remove('hidden');
+            document.getElementById('roomTypes').classList.add('hidden');
+            document.getElementById('facilities').classList.add('hidden');
+            document.getElementById('bookings').classList.add('hidden');
+            document.getElementById('bookingResume').classList.add('hidden');
+        }
+
+        function showBookings() {
+            document.getElementById('bookings').classList.remove('hidden');
+            document.getElementById('roomTypes').classList.add('hidden');
+            document.getElementById('facilities').classList.add('hidden');
+            document.getElementById('bookingForm').classList.add('hidden');
+            document.getElementById('bookingResume').classList.add('hidden');
+
+            const tbody = document.getElementById('bookingTable').querySelector('tbody');
+            tbody.innerHTML = '';
+
+            bookings.forEach(booking => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${booking.name}</td>
+                    <td>${booking.idNumber}</td>
+                    <td>${booking.roomType}</td>
+                    <td>${booking.checkIn}</td>
+                    <td>${booking.checkOut}</td>
+                    <td>${booking.breakfast === 'yes' ? 'Ya' : 'Tidak'}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function calculateTotal(checkIn, checkOut, roomType) {
+            const roomRates = {
+                'Standard': 500000,
+                'Deluxe': 750000,
+                'Family': 1000000
+            };
+
+            const checkInDate = new Date(checkIn);
+            const checkOutDate = new Date(checkOut);
+            const duration = Math.round((checkOutDate - checkInDate) / (1000 * 60 * 60 * 24));
+            const basePrice = duration * roomRates[roomType];
+
+            let discount = 0;
+            if (duration > 3) {
+                discount = 10;
+            } else if (duration > 5) {
+                discount = 15;
+            }
+
+            const totalPrice = basePrice - (basePrice * discount / 100);
+
+            return { totalPrice, discount, duration };
+        }
+
+        function submitBooking() {
+            const name = document.getElementById('name').value;
+            const idNumber = document.getElementById('idNumber').value;
+            const gender = document.getElementById('gender').value;
+            const roomType = document.getElementById('roomType').value;
+            const checkIn = document.getElementById('checkIn').value;
+            const checkOut = document.getElementById('checkOut').value;
+            const breakfast = document.getElementById('breakfast').value;
+
+            const { totalPrice, discount, duration } = calculateTotal(checkIn, checkOut, roomType);
+
+            const booking = {
+                name,
+                idNumber,
+                gender,
+                roomType,
+                checkIn,
+                checkOut,
+                breakfast,
+                totalPrice,
+                discount,
+                duration
+            };
+
+            bookings.push(booking);
+
+            document.getElementById('resumeName').textContent = name;
+            document.getElementById('resumeId').textContent = idNumber;
+            document.getElementById('resumeGender').textContent = gender;
+            document.getElementById('resumeRoom').textContent = roomType;
+            document.getElementById('resumeDuration').textContent = duration;
+            document.getElementById('resumeDiscount').textContent = discount;
+            document.getElementById('resumeTotal').textContent = totalPrice.toLocaleString();
+
+            alert('Pemesanan berhasil disimpan!');
+
+            document.getElementById('bookingResume').classList.remove('hidden');
+            document.getElementById('bookingForm').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
